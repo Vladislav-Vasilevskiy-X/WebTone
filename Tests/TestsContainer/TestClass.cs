@@ -13,7 +13,7 @@ namespace Tests.TestsContainer
 		{
 			// Arrange
 			Browser.Open(new Uri("http://www.google.com/ncr"));
-			
+
 			// Act
 			Waiter.SpinWait(() => new GoogleSearchHomePageView().FeelingLucky.Displayed, TimeSpan.FromSeconds(20));
 			var view = new GoogleSearchHomePageView();

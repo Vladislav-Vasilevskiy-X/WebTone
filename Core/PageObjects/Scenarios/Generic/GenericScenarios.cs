@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -23,7 +22,6 @@ namespace Core.PageObjects.Scenarios.Generic
 	/// <summary>
 	///     GenericScenarios class.
 	/// </summary>
-	[SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
 	public class GenericScenarios : Scenario
 	{
 		#region PRIVATE
@@ -34,7 +32,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <typeparam name="TView">The type of the view.</typeparam>
 		/// <param name="storageListPropertyInfo">The grid content property.</param>
 		/// <returns>The List.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
 		public IList GetGridBlocksList<TView>(PropertyInfo storageListPropertyInfo) where TView : View
 		{
 			var gridView = Resolve<TView>();
@@ -83,8 +80,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <typeparam name="TModel">The model type.</typeparam>
 		/// <typeparam name="TView">The type of edit view.</typeparam>
 		/// <param name="model">The model.</param>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TView is resolved inside of method")]
 		public void EnterModelData<TView, TModel>(TModel model) where TView : View
 		{
 			var editView = Resolve<TView>();
@@ -98,8 +93,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <typeparam name="TModel">The type of the model.</typeparam>
 		/// <param name="model">The model.</param>
 		/// <param name="pageObject">The page object.</param>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TView is resolved inside of method")]
 		public void EnterModelData<TPageObject, TModel>(TModel model, TPageObject pageObject) where TPageObject : class
 		{
 			EnterModelValuesToPageObjectProperties(model, pageObject);
@@ -178,8 +171,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <typeparam name="TModel">The type of the model.</typeparam>
 		/// <param name="index">The index of model in the grid.</param>
 		/// <returns>The Model.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TView is resolved inside of method")]
 		public TModel SelectByIndex<TView, TModel>(int index) where TModel : new() where TView : View
 		{
 			return SetByIndex<TView, TModel>(index, true);
@@ -192,8 +183,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <typeparam name="TModel">The type of the model.</typeparam>
 		/// <param name="index">The index of model in the grid.</param>
 		/// <returns>The Model.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TView is resolved inside of method")]
 		public TModel DeselectByIndex<TView, TModel>(int index) where TModel : new() where TView : View
 		{
 			return SetByIndex<TView, TModel>(index, false);
@@ -208,8 +197,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <param name="setValue">if set to <c>true</c> then select, otherwise deselect.</param>
 		/// <exception cref="System.ArgumentException">The mapping to select not found.</exception>
 		/// <returns>The Model.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TView is resolved inside of method")]
 		public TModel SetByIndex<TView, TModel>(int index, bool setValue) where TModel : new() where TView : View
 		{
 			var foundItem = GetHtmlElementToBlockMappingsFromCurrentView<TView, TModel>(null, x => false, index).FirstOrDefault();
@@ -234,8 +221,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <param name="modelToDeselect">The model that should be selected.</param>
 		/// <param name="comparer">The comparer of models.</param>
 		/// <returns>The selected mapping model.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TView is resolved inside of method")]
 		public HtmlElementToBlockMappingModel<TModel> SelectSingleModelInTheGrid<TView, TModel>(TModel modelToDeselect,
 			IEqualityComparer<TModel> comparer = null) where TModel : class, new() where TView : View
 		{
@@ -254,8 +239,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <typeparam name="TModel">The type of the model.</typeparam>
 		/// <param name="conditionFunction">The model condition to perform selection.</param>
 		/// <returns>The HtmlElementToBlockMappingModel.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TView is resolved inside of method")]
 		public HtmlElementToBlockMappingModel<TModel> SelectFirstFoundByConditionModelInTheGrid<TView, TModel>(
 			Func<TModel, bool> conditionFunction) where TModel : class, new() where TView : View
 		{
@@ -283,8 +266,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <param name="modelToSelect">The model that should be selected.</param>
 		/// <param name="matchCondition">The predicate to match models in the grid. If null then TModel.Equals is used.</param>
 		/// <returns>The HtmlElementToBlockMappingModel.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TView is resolved inside of method")]
 		public HtmlElementToBlockMappingModel<TModel> SelectSingleModelInTheGridWithPaging<TView, TModel>(
 			TModel modelToSelect, Func<TModel, bool> matchCondition = null) where TModel : class, new() where TView : View
 		{
@@ -303,8 +284,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <typeparam name="TModel">The type of the model.</typeparam>
 		/// <param name="conditionFunction">The model condition to perform selection.</param>
 		/// <returns>The HtmlElementToBlockMappingModel.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TView is resolved inside of method")]
 		public HtmlElementToBlockMappingModel<TModel> SelectFirstFoundByConditionModelInTheGridWithPaging<TView, TModel>(
 			Func<TModel, bool> conditionFunction) where TModel : class, new() where TView : View
 		{
@@ -335,8 +314,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <returns>
 		///     The deselected mapping model.
 		/// </returns>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TView is resolved inside of method")]
 		public HtmlElementToBlockMappingModel<TModel> DeselectSingleModelInTheGrid<TView, TModel>(TModel modelToDeselect,
 			IEqualityComparer<TModel> comparer = null) where TModel : class, new() where TView : View
 		{
@@ -356,10 +333,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <param name="modelsToSelect">The models that should be selected.</param>
 		/// <param name="comparer">The comparer of models.</param>
 		/// <returns>The list of selected mapping models.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures",
-			Justification = "Required by design.")]
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TView is resolved inside of method")]
 		public IList<HtmlElementToBlockMappingModel<TModel>> SelectSeveralModelsInTheGrid<TView, TModel>(
 			IList<TModel> modelsToSelect, IEqualityComparer<TModel> comparer = null) where TModel : class, new()
 			where TView : View
@@ -379,10 +352,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <param name="modelsToDeselect">The models that should be selected.</param>
 		/// <param name="comparer">The comparer of models.</param>
 		/// <returns>The list of deselected mapping models.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures",
-			Justification = "Required by design.")]
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TView is resolved inside of method")]
 		public IList<HtmlElementToBlockMappingModel<TModel>> DeselectSeveralModelsInTheGrid<TView, TModel>(
 			IList<TModel> modelsToDeselect, IEqualityComparer<TModel> comparer = null) where TModel : class, new()
 			where TView : View
@@ -405,10 +374,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <param name="setValue">If true, the model should be selected, false - deselected.</param>
 		/// <param name="comparer">The comparer of the models.</param>
 		/// <returns>Blocks and models collection.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures",
-			Justification = "Required by design.")]
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TView is resolved inside of method")]
 		public IList<HtmlElementToBlockMappingModel<TModel>> SetSeveralModelsInTheGrid<TView, TModel>(
 			IList<TModel> modelsToSelect, bool setValue, IEqualityComparer<TModel> comparer = null) where TModel : class, new()
 			where TView : View
@@ -441,10 +406,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <param name="propertyName">The name of the property inside of model.</param>
 		/// <param name="propertyValue">The value of the property.</param>
 		/// <returns>Indexes of selected/deselcted models.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures",
-			Justification = "Required by design.")]
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TView is resolved inside of method")]
 		public IList<HtmlElementToBlockMappingModel<TModel>> DeselectModelsInTheGridByPropertyValue<TView, TModel>(
 			string propertyName, string propertyValue) where TModel : class, new() where TView : View
 		{
@@ -468,10 +429,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <param name="propertyName">The name of the property inside of model.</param>
 		/// <param name="propertyValue">The value of the property.</param>
 		/// <returns>Indexes of selected/deselcted models.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures",
-			Justification = "Required by design.")]
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TView is resolved inside of method")]
 		public IList<HtmlElementToBlockMappingModel<TModel>> SelectModelsInTheGridByPropertyValue<TView, TModel>(
 			string propertyName, string propertyValue) where TModel : class, new() where TView : View
 		{
@@ -496,10 +453,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <param name="propertyValue">The value of the property.</param>
 		/// <param name="setValue">If true, the model should be selected, false - deselected.</param>
 		/// <returns>selected/deselcted mappings.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures",
-			Justification = "Required by design.")]
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TView is resolved inside of method")]
 		public IList<HtmlElementToBlockMappingModel<TModel>> SetModelsInTheGridByPropertyValue<TView, TModel>(
 			string propertyName, string propertyValue, bool setValue) where TModel : class, new() where TView : View
 		{
@@ -520,7 +473,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <param name="index">The index.</param>
 		/// <param name="setValue">if set to <c>true</c> select, otherwise deselect.</param>
 		/// <returns>Block and model.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
 		public HtmlElementToBlockMappingModel<TModel> SetModelInTheGridByFoundIndexAndCondition<TView, TModel>(
 			Func<TModel, bool> selectModelFunction, int index, bool setValue) where TModel : class, new() where TView : View
 		{
@@ -538,9 +490,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <param name="selectModelFunction">The select model function.</param>
 		/// <returns>The items to select.</returns>
 		/// <exception cref="System.ArgumentException">There are no items to select in the grid.</exception>
-		[SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures",
-			Justification = "Required by design")]
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
 		public IList<HtmlElementToBlockMappingModel<TModel>> SelectModelsFromTheCurrentViewByCondition<TView, TModel>(
 			Func<TModel, bool> selectModelFunction) where TModel : class, new() where TView : View
 		{
@@ -555,9 +504,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <param name="selectModelFunction">The select model function.</param>
 		/// <returns>The items to select.</returns>
 		/// <exception cref="System.ArgumentException">There are no items to select in the grid.</exception>
-		[SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures",
-			Justification = "Required by design")]
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
 		public IList<HtmlElementToBlockMappingModel<TModel>> DeselectModelsFromTheCurrentViewByCondition<TView, TModel>(
 			Func<TModel, bool> selectModelFunction) where TModel : class, new() where TView : View
 		{
@@ -578,9 +524,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <param name="currentPageOnly">if set to <c>true</c> the methods will not click paging buttons.</param>
 		/// <returns>Blocks and models collection.</returns>
 		/// <exception cref="System.ArgumentException">There are no items to select in the grid.</exception>
-		[SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures",
-			Justification = "Required by design")]
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
 		private IList<HtmlElementToBlockMappingModel<TModel>> SetSeveralModelsInTheGridByCondition<TView, TModel>(
 			Func<TModel, bool> matchFunction, Func<HtmlElementToBlockMappingModel<TModel>, bool> processFunction, bool setValue,
 			bool currentPageOnly) where TModel : class, new() where TView : View
@@ -620,10 +563,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <param name="process">The process function for HtmlElementToBlockMappingModel.</param>
 		/// <param name="skipCount">The skip count.</param>
 		/// <returns>Blocks and models collection.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures",
-			Justification = "Reviewed. It is ok here")]
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TView is resolved inside of method")]
 		public IEnumerable<HtmlElementToBlockMappingModel<TModel>> GetHtmlElementToBlockMappingsFromCurrentView<TView, TModel>
 			(Func<TModel, bool> filter = null, Func<HtmlElementToBlockMappingModel<TModel>, bool> process = null,
 				int skipCount = 0) where TModel : new() where TView : View
@@ -682,8 +621,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		///     grid items marked with attribute <see cref="PropertyStorageListAttribute" />
 		/// </typeparam>
 		/// <returns>The result list of retrieved models.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TView is resolved inside of method")]
 		public IList<TModel> GetModelsList<TView, TModel>() where TModel : new() where TView : View
 		{
 			return GetHtmlElementToBlockMappings<TView, TModel>().Select(m => m.Model).ToList();
@@ -698,8 +635,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		///     grid items marked with attribute <see cref="PropertyStorageListAttribute" />
 		/// </typeparam>
 		/// <returns>The result list of retrieved models.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TView is resolved inside of method")]
 		public IList<TModel> GetModelsListFromCurrentView<TView, TModel>() where TModel : new() where TView : View
 		{
 			return GetHtmlElementToBlockMappingsFromCurrentView<TView, TModel>().Select(m => m.Model).ToList();
@@ -717,8 +652,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// </param>
 		/// <param name="processFunction">The process function.</param>
 		/// <returns>Blocks and models collection.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
 		public IList<HtmlElementToBlockMappingModel<TModel>> GetHtmlElementToBlockMappingsFromTheGridWithPaging<TView, TModel>
 			(Func<TModel, bool> compareModelFunction, bool breakIfConditionMet,
 				Func<HtmlElementToBlockMappingModel<TModel>, bool> processFunction = null) where TModel : new() where TView : View
@@ -765,8 +698,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		///     page.
 		/// </param>
 		/// <returns>Blocks and models collection.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
 		public IList<HtmlElementToBlockMappingModel<TModel>> GetHtmlElementToBlockMappingsFromTheGridWithScrolling
 			<TView, TModel>(Func<TModel, bool> compareModelFunction, bool breakIfConditionMet) where TModel : new()
 			where TView : BaseGridView
@@ -812,8 +743,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <typeparam name="TView">The type of the view.</typeparam>
 		/// <typeparam name="TModel">The type of the model.</typeparam>
 		/// <returns>Blocks and models collection.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
 		public IEnumerable<HtmlElementToBlockMappingModel<TModel>> GetHtmlElementToBlockMappings<TView, TModel>()
 			where TView : View where TModel : new()
 		{
@@ -910,8 +839,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <typeparam name="TModel">The type of the model.</typeparam>
 		/// <param name="filter">The filter function.</param>
 		/// <returns>The list of items from the grid, filtered by the filter.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
-		[SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
 		public IList<HtmlElementToBlockMappingModel<TModel>> GetGridMappingModels<TView, TModel>(
 			Func<TModel, bool> filter = null) where TView : View where TModel : new()
 		{
@@ -926,7 +853,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <typeparam name="TModel">The type of the model.</typeparam>
 		/// <param name="filter">The filter function.</param>
 		/// <returns>The first item from the grid that matches the filter condition.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
 		public HtmlElementToBlockMappingModel<TModel> GetFirstGridMappingModel<TView, TModel>(Func<TModel, bool> filter = null)
 			where TView : View where TModel : new()
 		{
@@ -940,7 +866,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <typeparam name="TModel">The type of the model.</typeparam>
 		/// <param name="filter">The filter function.</param>
 		/// <returns>The list of items from the grid, filtered by the filter.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
 		public IList<TModel> GetGridModels<TView, TModel>(Func<TModel, bool> filter = null) where TView : View
 			where TModel : new()
 		{
@@ -954,7 +879,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <typeparam name="TModel">The type of the model.</typeparam>
 		/// <param name="filter">The filter function.</param>
 		/// <returns>The first item from the grid that matches the filter condition.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
 		public TModel GetFirstGridModel<TView, TModel>(Func<TModel, bool> filter = null) where TView : View
 			where TModel : new()
 		{
@@ -968,7 +892,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <typeparam name="TModel">The type of the model.</typeparam>
 		/// <param name="match">The predicate for the row to make visible.</param>
 		/// <returns>True if the row is made visible, False otherwise (e.g. there is no matching row).</returns>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
 		public bool MakeGridRowVisible<TView, TModel>(Func<TModel, bool> match = null) where TView : View where TModel : new()
 		{
 			return GetFirstGridMappingModel<TView, TModel>(match) != null;
@@ -981,7 +904,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <typeparam name="TModel">The type of the model.</typeparam>
 		/// <param name="model">The model of the row to make visible.</param>
 		/// <returns>True if the row is made visible, False otherwise (e.g. there is no matching row).</returns>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
 		public bool MakeGridRowVisible<TView, TModel>(TModel model) where TView : BaseGridView where TModel : new()
 		{
 			return GetFirstGridMappingModel<TView, TModel>(x => model.Equals(x)) != null;
@@ -996,8 +918,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// </summary>
 		/// <typeparam name="TView">The type of the view.</typeparam>
 		/// <typeparam name="TModel">The type of the model.</typeparam>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TModel should be provided for GetModelsList<TModel>")]
 		public void VerifyDefaultSortingOrder<TView, TModel>() where TModel : new() where TView : View
 		{
 			var existingModels = GetHtmlElementToBlockMappingsFromCurrentView<TView, TModel>().Select(x => x.Model).ToList();
@@ -1015,7 +935,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// <typeparam name="TModel">The type of the model.</typeparam>
 		/// <param name="existingModels">The existing models.</param>
 		/// <exception cref="System.ArgumentException">Add DefaultSortingColumnAttribute for one property of the model.</exception>
-		[SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "OK for Test Code")]
 		public void VerifyDefaultSortingOrder<TModel>(IList<TModel> existingModels) where TModel : new()
 		{
 			IList<TModel> sortedModels;
@@ -1092,8 +1011,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// </typeparam>
 		/// <param name="modelsToVerify">The list of the models to verify.</param>
 		/// <param name="comparer">Equality comparer.</param>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TView is resolved inside of method")]
 		public void VerifySeveralModelsNotDisplayedInTheGrid<TView, TModel>(IList<TModel> modelsToVerify,
 			IEqualityComparer<TModel> comparer = null) where TModel : new() where TView : View
 		{
@@ -1115,8 +1032,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		///     grid items marked with attribute.
 		/// </typeparam>
 		/// <param name="modelToVerify">The model to verify.</param>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TView is resolved inside of method")]
 		public void VerifySingleModelNotDisplayedInTheGrid<TView, TModel>(TModel modelToVerify) where TModel : new()
 			where TView : View
 		{
@@ -1136,8 +1051,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// </typeparam>
 		/// <param name="modelsToVerify">The list of the models to verify.</param>
 		/// <param name="comparer">Equality Comparer.</param>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TView is resolved inside of method")]
 		public void VerifySeveralModelsDisplayedInTheGrid<TView, TModel>(IList<TModel> modelsToVerify,
 			IEqualityComparer<TModel> comparer = null) where TModel : new() where TView : View
 		{
@@ -1159,8 +1072,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		///     grid items marked with attribute.
 		/// </typeparam>
 		/// <param name="modelToVerify">The model to verify.</param>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TView is resolved inside of method")]
 		public void VerifySingleModelDisplayedInTheGrid<TView, TModel>(TModel modelToVerify) where TModel : new()
 			where TView : View
 		{
@@ -1234,10 +1145,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		///     Verify that <see cref="TextInput" /> objects marked with attribute <see cref="DefaultValueAttribute" /> are empty.
 		/// </summary>
 		/// <typeparam name="TView">The view with inputs.</typeparam>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
-			Justification = "TView is resolved inside of method")]
-		[SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters",
-			MessageId = "Utilities.Verification.Verify.IsFalse(System.Boolean,System.String)")]
 		public void VerifyDefaultValues<TView>() where TView : View
 		{
 			var view = Resolve<TView>();

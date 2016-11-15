@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -115,8 +114,6 @@ namespace Core.GeneralUtils.Container
 		///     Log the result into html file.
 		/// </summary>
 		/// <param name="testPassed">When test fails at Verification, this is false.</param>
-		[SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters",
-			MessageId = "Verification.Verify.IsTrue(System.Boolean,System.String)")]
 		private static void PrintTestResults(bool testPassed = true)
 		{
 			if (LocalRun)
@@ -199,8 +196,6 @@ namespace Core.GeneralUtils.Container
 		///     Log API request.
 		/// </summary>
 		/// <param name="requestLog">The request log.</param>
-		[SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists"),
-		 SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists")]
 		public static void LogAPIRequest(List<string> requestLog)
 		{
 			if (LocalRun)
@@ -216,8 +211,6 @@ namespace Core.GeneralUtils.Container
 		/// </summary>
 		/// <param name="content">The content.</param>
 		/// <param name="statusCode">The status code.</param>
-		[SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters",
-			MessageId = "Container.Logger.AddToTestToLogDictionary(System.String)")]
 		public static void LogAPIRespond(string content, HttpStatusCode statusCode)
 		{
 			if (LocalRun)
@@ -243,10 +236,6 @@ namespace Core.GeneralUtils.Container
 		///     Log the exceptions if there are any.
 		/// </summary>
 		/// <param name="assertFailures">The exceptions.</param>
-		[SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists"),
-		 SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters",
-			 MessageId = "Container.Logger.WriteLine(System.String)")]
-		[SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists")]
 		public static void Verify(List<UnitTestVerifyException> assertFailures)
 		{
 			if (!assertFailures.Any())

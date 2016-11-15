@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -18,7 +17,6 @@ namespace Core.PageObjects.Scenarios
 		///     Method waits until file downloading completes.
 		/// </summary>
 		/// <param name="timeout">Timeout of file download in seconds.</param>
-		[SuppressMessage("Microsoft.Usage", "CA2201:DoNotRaiseReservedExceptionTypes")]
 		public void WaitUntilAnyFileDownloaded(int timeout = 30)
 		{
 			var fileDownloaded = false;
@@ -74,7 +72,6 @@ namespace Core.PageObjects.Scenarios
 		/// </summary>
 		/// <param name="fileName">The name of the file.</param>
 		/// <param name="timeout">Timeout of file download in seconds.</param>
-		[SuppressMessage("Microsoft.Usage", "CA2201:DoNotRaiseReservedExceptionTypes")]
 		public void WaitUntilExactFileDownloaded(string fileName, int timeout = 30)
 		{
 			var fileDownloaded = false;

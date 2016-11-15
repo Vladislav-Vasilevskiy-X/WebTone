@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 
@@ -8,7 +7,6 @@ namespace Core.SeleniumUtils
 	/// <summary>
 	///     PathUtils class.
 	/// </summary>
-	[SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Utils")]
 	public static class PathUtils
 	{
 		#region Constants

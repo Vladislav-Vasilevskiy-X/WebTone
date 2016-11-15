@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+﻿using System.Linq;
 using Core.GeneralUtils;
 using Core.PageObjects.Scenarios.Generic.Attributes;
 using Core.SeleniumUtils.Core.HtmlElements.Elements;
@@ -52,7 +51,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// </summary>
 		/// <typeparam name="TPageObject">The type of the T page object.</typeparam>
 		/// <param name="buttonFlag">The button flag.</param>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
 		public void ClickButton<TPageObject>(ButtonFlag buttonFlag) where TPageObject : class, new()
 		{
 			GetButton(new TPageObject(), buttonFlag).ClickAndWaitAjax();
@@ -74,7 +72,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		/// </summary>
 		/// <typeparam name="TPageObject">The type of the T page object.</typeparam>
 		/// <param name="buttonFlag">The button flag.</param>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
 		public void ClickButtonWithoutAjax<TPageObject>(ButtonFlag buttonFlag) where TPageObject : class, new()
 		{
 			GetButton(new TPageObject(), buttonFlag).Click();

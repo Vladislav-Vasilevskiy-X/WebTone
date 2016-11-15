@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Reflection;
 using System.Xml;
@@ -15,16 +14,12 @@ namespace Core.GeneralUtils.Container
 		/// <summary>
 		///     A cache used to remember Xml documentation for assemblies.
 		/// </summary>
-		[SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1400:AccessModifierMustBeDeclared",
-			Justification = "Reviewed. Suppression is OK here.")] [SuppressMessage("Microsoft.Usage", "CA2211:NonConstantFieldsShouldNotBeVisible")] private static readonly
-			Dictionary<Assembly, XmlDocument> cache = new Dictionary<Assembly, XmlDocument>();
+		private static readonly Dictionary<Assembly, XmlDocument> cache = new Dictionary<Assembly, XmlDocument>();
 
 		/// <summary>
 		///     A cache used to store failure exceptions for assembly lookups.
 		/// </summary>
-		[SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1400:AccessModifierMustBeDeclared",
-			Justification = "Reviewed. Suppression is OK here.")] [SuppressMessage("Microsoft.Usage", "CA2211:NonConstantFieldsShouldNotBeVisible")] private static readonly
-			Dictionary<Assembly, Exception> failCache = new Dictionary<Assembly, Exception>();
+		private static readonly Dictionary<Assembly, Exception> failCache = new Dictionary<Assembly, Exception>();
 
 		/// <summary>
 		///     Reads the summary of a method.
@@ -35,10 +30,6 @@ namespace Core.GeneralUtils.Container
 		/// <returns>
 		///     The XML for the method.
 		/// </returns>
-		[SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters"),
-		 SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "XML"),
-		 SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes",
-			 MessageId = "System.Xml.XmlNode")]
 		public static XmlElement XmlFromMember(MethodInfo methodInfo)
 		{
 			var parametersString = string.Empty;
@@ -77,7 +68,6 @@ namespace Core.GeneralUtils.Container
 		/// <returns>
 		///     The Xml member that has a name that describes the specified reflection element.
 		/// </returns>
-		[SuppressMessage("Microsoft.Usage", "CA2201:DoNotRaiseReservedExceptionTypes")]
 		private static XmlElement XmlFromName(Type type, char prefix, string name)
 		{
 			string fullName;
@@ -129,10 +119,6 @@ namespace Core.GeneralUtils.Container
 		///     This version uses a cache to preserve the assemblies, so that
 		///     the XML file is not loaded and parsed on every single lookup.
 		/// </remarks>
-		[SuppressMessage("Microsoft.Usage", "CA2200:RethrowToPreserveStackDetails"),
-		 SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "XML"),
-		 SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes",
-			 MessageId = "System.Xml.XmlNode")]
 		public static XmlDocument XmlFromAssembly(Assembly assembly)
 		{
 			if (failCache.ContainsKey(assembly))
@@ -162,10 +148,6 @@ namespace Core.GeneralUtils.Container
 		/// </summary>
 		/// <param name="assembly">The assembly to find the XML document for.</param>
 		/// <returns>The XML document.</returns>
-		[SuppressMessage("Microsoft.Usage", "CA2201:DoNotRaiseReservedExceptionTypes"),
-		 SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope"),
-		 SuppressMessage("Microsoft.Globalization", "CA1307:SpecifyStringComparison",
-			 MessageId = "System.String.StartsWith(System.String)")]
 		private static XmlDocument XmlFromAssemblyNonCached(Assembly assembly)
 		{
 			var assemblyFilename = assembly.CodeBase;

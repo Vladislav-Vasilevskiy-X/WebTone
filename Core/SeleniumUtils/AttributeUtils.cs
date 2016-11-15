@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -20,10 +19,6 @@ namespace Core.SeleniumUtils
 		/// <param name="propertyLambda">The lambda expression of the property.</param>
 		/// <exception cref="System.ArgumentException">Argument Exception.</exception>
 		/// <returns>Property info of the property.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters",
-			Justification = "Reviewed. It is ok here")]
-		[SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures",
-			Justification = "Reviewed. It is ok here")]
 		public static PropertyInfo GetPropertyInfo<T>(Expression<Func<T>> propertyLambda)
 		{
 			var member = propertyLambda.Body as MemberExpression;
@@ -50,8 +45,6 @@ namespace Core.SeleniumUtils
 		/// <param name="propertyLambda">The property lambda.</param>
 		/// <param name="attributeType">Type of the attribute.</param>
 		/// <returns>Object array.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures",
-			Justification = "Reviewed. It is ok here")]
 		public static object[] GetCustomAttributes<T>(Expression<Func<T>> propertyLambda, Type attributeType)
 		{
 			var info = GetPropertyInfo(propertyLambda);
@@ -65,8 +58,6 @@ namespace Core.SeleniumUtils
 		/// <param name="propertyLambda">The property lambda.</param>
 		/// <param name="attributeType">Type of the attribute.</param>
 		/// <returns>The object.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures",
-			Justification = "Reviewed. It is ok here")]
 		public static object GetCustomAttribute<T>(Expression<Func<T>> propertyLambda, Type attributeType)
 		{
 			var info = GetPropertyInfo(propertyLambda);
@@ -81,8 +72,6 @@ namespace Core.SeleniumUtils
 		/// <param name="attributeType">Type of the custom attribute.</param>
 		/// <param name="propertyName">Name of the property.</param>
 		/// <returns>The object.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures",
-			Justification = "Reviewed. It is ok here")]
 		public static object Get<T>(Expression<Func<T>> propertyLambda, Type attributeType, string propertyName)
 		{
 			var attribute = GetCustomAttribute(propertyLambda, attributeType);

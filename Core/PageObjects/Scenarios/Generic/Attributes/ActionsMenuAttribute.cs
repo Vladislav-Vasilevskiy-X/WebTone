@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Core.PageObjects.Scenarios.Generic.Attributes
 {
 	/// <summary>
 	///     Attribute for Actions menu list.
 	/// </summary>
-	[SuppressMessage("Microsoft.Design", "CA1019:DefineAccessorsForAttributeArguments")]
 	[AttributeUsage(AttributeTargets.Property)]
 	public sealed class ActionsMenuAttribute : Attribute
 	{

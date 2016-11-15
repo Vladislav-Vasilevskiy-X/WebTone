@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace Core.PageObjects.Scenarios.Generic.Attributes
+﻿namespace Core.PageObjects.Scenarios.Generic.Attributes
 {
 	/// <summary>
 	///     The button flags.
@@ -170,7 +168,7 @@ namespace Core.PageObjects.Scenarios.Generic.Attributes
 		/// <summary>
 		///     The GoToTimeSheet item.
 		/// </summary>
-		[SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "TimeSheet")] GoToTimeSheet,
+		GoToTimeSheet,
 
 		/// <summary>
 		///     The Expand All item.

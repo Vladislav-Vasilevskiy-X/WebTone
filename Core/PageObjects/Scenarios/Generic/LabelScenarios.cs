@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -20,7 +19,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		///     Check if labels exist in the page and if exist, check its text value.
 		/// </summary>
 		/// <typeparam name="TView">Type of the view.</typeparam>
-		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
 		public void CheckLabels<TView>() where TView : View
 		{
 			var pageObject = Resolve<TView>();
@@ -31,7 +29,6 @@ namespace Core.PageObjects.Scenarios.Generic
 		///     Check if labels exist in the page and if exist, check its text value.
 		/// </summary>
 		/// <param name="pageObject">The view or block object.</param>
-		[SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "object")]
 		public void CheckLabels(object pageObject)
 		{
 			var labelProperties = pageObject.GetPublicPropertiesWithAttribute(typeof(LabelAttribute));

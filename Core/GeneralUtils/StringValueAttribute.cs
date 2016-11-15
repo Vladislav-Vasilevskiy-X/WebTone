@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using Core.SeleniumUtils;
 
@@ -44,9 +43,6 @@ namespace Core.GeneralUtils
 		/// <typeparam name="T">The type of the T.</typeparam>
 		/// <param name="propertyLambda">The property lambda.</param>
 		/// <returns>The attribute value.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures"),
-		 SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures"),
-		 SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
 		public static string Get<T>(Expression<Func<T>> propertyLambda)
 		{
 			return (string) AttributeUtils.Get(propertyLambda, typeof(StringValueAttribute), "Value");

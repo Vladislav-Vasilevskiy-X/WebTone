@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -83,8 +82,6 @@ namespace Core.GeneralUtils
 		///     Prints the public properties to console.
 		/// </summary>
 		/// <param name="value">The value.</param>
-		[SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters",
-			MessageId = "System.Console.WriteLine(System.String)")]
 		public static void PrintPublicPropertiesToConsole(this object value)
 		{
 			var props = value.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
