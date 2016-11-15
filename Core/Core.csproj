@@ -183,7 +183,6 @@
     <Compile Include="SeleniumUtils\Core\CommonExceptions.cs" />
     <Compile Include="SeleniumUtils\Core\Configurations.cs" />
     <Compile Include="SeleniumUtils\Core\Constants\JavaScriptEvents.cs" />
-    <Compile Include="SeleniumUtils\Core\Constants\SystemMessages.cs" />
     <Compile Include="SeleniumUtils\Core\Constants\TagNames.cs" />
     <Compile Include="SeleniumUtils\Core\ErrorHandling\BaseUIErrorHandler.cs" />
     <Compile Include="SeleniumUtils\Core\ErrorHandling\FatalErrorHandler.cs" />
