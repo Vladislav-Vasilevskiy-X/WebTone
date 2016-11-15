@@ -4,6 +4,7 @@ using System.IO;
 using Core.GeneralUtils.Container;
 using Core.GeneralUtils.MSTest;
 using Core.GeneralUtils.Verification;
+using Core.PageObjects.Scenarios.Generic;
 using Core.SeleniumUtils;
 using Core.SeleniumUtils.Core;
 using Core.SeleniumUtils.Core.Objects;
@@ -18,6 +19,16 @@ namespace Tests.TestsContainer
 		///     Collection of disposable items e.g. browser
 		/// </summary>
 		private static readonly IList<IDisposable> AssemblyRecycleBin = new List<IDisposable>();
+
+		/// <summary>
+		///		Generic scenarios.
+		/// </summary>
+		public GenericScenarios GenericScenarios {
+			get
+			{
+				return new GenericScenarios();
+			}
+		}
 
 		/// <summary>
 		///     Gets or sets a value indicating whether quit browser after test.
@@ -77,7 +88,7 @@ namespace Tests.TestsContainer
 		public static void AssemblyInitialize(TestContext testContext)
 		{
 			AssemblyUtilities.SetEntryAssembly();
-			BootstrapperUI.Bootstrap();
+			BootstrapperUI.Bootstrap();	
 		}
 
 		[TestInitialize]

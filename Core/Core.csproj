@@ -272,6 +272,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="PageObjects\Blocks\" />
     <Folder Include="PageObjects\Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
